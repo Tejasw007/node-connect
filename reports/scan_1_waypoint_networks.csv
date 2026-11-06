@@ -1,0 +1,9 @@
+﻿ssid,bssid,band,ch,freq_mhz,rssi_dbm
+Airtel_rake_0524,bc:51:5f:ad:10:ec,2.4 GHz,11,2462,-46
+Jain_Employee,80:bc:37:0d:67:c8,2.4 GHz,8,2447,-57
+Airtel_rake_0524,bc:51:5f:ad:10:ed,5 GHz,48,5240,-58
+Jain_Guest,80:bc:37:4c:fc:58,2.4 GHz,9,2452,-59
+vivo Y22,5a:4d:7f:b4:8c:a8,2.4 GHz,6,2437,-61
+Jain_Student,80:bc:37:8c:fc:58,2.4 GHz,13,2472,-63
+Redmi 13C 5G,66:7b:38:dc:63:1e,5 GHz,44,5220,-64
+Jain_Employee,80:bc:37:0c:fc:58,2.4 GHz,13,2472,-65

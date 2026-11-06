@@ -1,0 +1,16 @@
+﻿metric,value,unit
+Project,Project 1 - Jain_Student,
+Scan ID,Scan 1,
+Capture Timestamp,2026-10-13T10:36:00Z,UTC
+Duration,13m 3s,minutes
+Samples Collected,404,observations
+Unique Access Points,275,radios
+Surveyed Area,925.8,sq meters
+Tracking Activity,35,percent
+2.4 GHz APs,91,radios
+5 GHz APs,184,radios
+Coverage Excellent,9,percent
+Coverage Good,20,percent
+Coverage Fair,36,percent
+Coverage Poor,22,percent
+Coverage Dead,13,percent

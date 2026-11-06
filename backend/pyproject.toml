@@ -1,0 +1,27 @@
+[project]
+name = "nodeconnect"
+version = "0.1.0"
+description = "NodeConnect analytics MVP"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+    "pandas>=2.2.0",
+    "numpy>=2.0.0",
+    "python-multipart>=0.0.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "httpx>=0.28.0",
+]
+ocr = [
+    "Pillow>=11.0.0",
+    "pytesseract>=0.3.13",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

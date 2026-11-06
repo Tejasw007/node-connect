@@ -1,0 +1,19 @@
+﻿ssid,bssid,vendor,band,channel,peak_rssi_dbm,coverage_status,is_target
+Jain_Student,c8:a6:08:b8:5f:28,Ruckus Wireless,2.4 GHz,1,-25,Target / Excellent,True
+Jain_Employee,c8:a6:08:38:5f:28,Ruckus Wireless,2.4 GHz,1,-25,Campus Staff / Excellent,False
+Jain_Guest,c8:a6:08:78:5f:28,Ruckus Wireless,2.4 GHz,1,-25,Guest / Excellent,False
+Jain_Guest,34:fa:9f:64:c9:88,Ruckus Wireless,2.4 GHz,6,-38,Guest / Excellent,False
+Jain_Employee,34:fa:9f:24:c9:88,Ruckus Wireless,2.4 GHz,6,-38,Campus Staff / Excellent,False
+Jain_Student,34:fa:9f:a4:c9:88,Ruckus Wireless,2.4 GHz,6,-39,Target / Excellent,True
+Jain_Employee,80:bc:37:0d:10:d8,Ruckus Wireless,2.4 GHz,11,-40,Campus Staff / Excellent,False
+Jain_Employee,c8:a6:08:38:5f:2c,Ruckus Wireless,5 GHz,36,-43,Campus Staff / Excellent,False
+Jain_Student,34:fa:9f:aa:94:a8,Ruckus Wireless,2.4 GHz,4,-48,Connected / Good,True
+Jain_Student,34:fa:9f:aa:94:ac,Ruckus Wireless,5 GHz,116,-57,Connected / Good,True
+Airtel_rake_0524,bc:51:5f:ad:10:ec,Airtel Broadband,2.4 GHz,11,-46,ISP Gateway / Good,False
+Jain_Employee,80:bc:37:0d:67:c8,Ruckus Wireless,2.4 GHz,8,-57,Campus Staff / Good,False
+Airtel_rake_0524,bc:51:5f:ad:10:ed,Airtel Broadband,5 GHz,48,-58,ISP Gateway / Good,False
+Jain_Guest,80:bc:37:4c:fc:58,Ruckus Wireless,2.4 GHz,9,-59,Guest / Good,False
+vivo Y22,5a:4d:7f:b4:8c:a8,Mobile Hotspot,2.4 GHz,6,-61,Rogue Hotspot / Fair,False
+Jain_Student,80:bc:37:8c:fc:58,Ruckus Wireless,2.4 GHz,13,-63,Target / Fair,True
+Redmi 13C 5G,66:7b:38:dc:63:1e,Mobile Hotspot,5 GHz,44,-64,Rogue Hotspot / Fair,False
+Jain_Employee,80:bc:37:0c:fc:58,Ruckus Wireless,2.4 GHz,13,-65,Campus Staff / Fair,False

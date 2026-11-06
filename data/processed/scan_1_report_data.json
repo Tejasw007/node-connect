@@ -1,0 +1,1869 @@
+{
+  "report_metadata": {
+    "project_name": "Project 1 - Jain_Student",
+    "scan_id": "Scan 1",
+    "facility": "DMGT EL Engineering Block - Campus Survey",
+    "surveyor_device": "OPPO CPH2739 \u00b7 Android 16 (API 36) \u00b7 NetLens 1.9.2",
+    "capture_timestamp": "2026-10-13T10:36:00Z",
+    "report_generated": "2026-10-13T10:50:00Z",
+    "provenance": {
+      "source_archive": "data/raw/DMGT EL (72 photo captures)",
+      "validation_standard": "NodeConnect Evidence-Aware Protocol v1.0",
+      "watermark_filtered": "PREVIEW - NetLens Pro",
+      "audit_status": "VERIFIED_ACCURATE"
+    }
+  },
+  "executive_kpis": {
+    "duration_seconds": 783,
+    "duration_display": "13m 3s",
+    "samples_collected": 404,
+    "unique_access_points": 275,
+    "surveyed_area_sqm": 925.8,
+    "tracking_activity_pct": 35,
+    "position_accuracy": "Waypoint verified"
+  },
+  "coverage_breakdown": {
+    "excellent": {
+      "percentage": 9,
+      "threshold": "Signal > -50 dBm",
+      "color": "#10b981"
+    },
+    "good": {
+      "percentage": 20,
+      "threshold": "-50 to -65 dBm",
+      "color": "#3b82f6"
+    },
+    "fair": {
+      "percentage": 36,
+      "threshold": "-65 to -75 dBm",
+      "color": "#f59e0b"
+    },
+    "poor": {
+      "percentage": 22,
+      "threshold": "-75 to -85 dBm",
+      "color": "#f97316"
+    },
+    "dead": {
+      "percentage": 13,
+      "threshold": "< -85 dBm (Unserved)",
+      "color": "#ef4444"
+    }
+  },
+  "band_distribution": {
+    "band_2_4_ghz": {
+      "count": 91,
+      "percentage": 33.1
+    },
+    "band_5_ghz": {
+      "count": 184,
+      "percentage": 66.9
+    },
+    "total_radios": 275
+  },
+  "access_points": [
+    {
+      "ssid": "Jain_Student",
+      "bssid": "c8:a6:08:b8:5f:28",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 1,
+      "peak_rssi_dbm": -25,
+      "coverage_status": "Target / Excellent",
+      "is_target": true
+    },
+    {
+      "ssid": "Jain_Employee",
+      "bssid": "c8:a6:08:38:5f:28",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 1,
+      "peak_rssi_dbm": -25,
+      "coverage_status": "Campus Staff / Excellent",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Guest",
+      "bssid": "c8:a6:08:78:5f:28",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 1,
+      "peak_rssi_dbm": -25,
+      "coverage_status": "Guest / Excellent",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Guest",
+      "bssid": "34:fa:9f:64:c9:88",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 6,
+      "peak_rssi_dbm": -38,
+      "coverage_status": "Guest / Excellent",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Employee",
+      "bssid": "34:fa:9f:24:c9:88",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 6,
+      "peak_rssi_dbm": -38,
+      "coverage_status": "Campus Staff / Excellent",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Student",
+      "bssid": "34:fa:9f:a4:c9:88",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 6,
+      "peak_rssi_dbm": -39,
+      "coverage_status": "Target / Excellent",
+      "is_target": true
+    },
+    {
+      "ssid": "Jain_Employee",
+      "bssid": "80:bc:37:0d:10:d8",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 11,
+      "peak_rssi_dbm": -40,
+      "coverage_status": "Campus Staff / Excellent",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Employee",
+      "bssid": "c8:a6:08:38:5f:2c",
+      "vendor": "Ruckus Wireless",
+      "band": "5 GHz",
+      "channel": 36,
+      "peak_rssi_dbm": -43,
+      "coverage_status": "Campus Staff / Excellent",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Student",
+      "bssid": "34:fa:9f:aa:94:a8",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 4,
+      "peak_rssi_dbm": -48,
+      "median_rssi_dbm": -48,
+      "weakest_rssi_dbm": -48,
+      "coverage_status": "Connected / Good",
+      "is_target": true
+    },
+    {
+      "ssid": "Jain_Student",
+      "bssid": "34:fa:9f:aa:94:ac",
+      "vendor": "Ruckus Wireless",
+      "band": "5 GHz",
+      "channel": 116,
+      "peak_rssi_dbm": -57,
+      "median_rssi_dbm": -57,
+      "weakest_rssi_dbm": -57,
+      "coverage_status": "Connected / Good",
+      "is_target": true
+    },
+    {
+      "ssid": "Airtel_rake_0524",
+      "bssid": "bc:51:5f:ad:10:ec",
+      "vendor": "Airtel Broadband",
+      "band": "2.4 GHz",
+      "channel": 11,
+      "peak_rssi_dbm": -46,
+      "coverage_status": "ISP Gateway / Good",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Employee",
+      "bssid": "80:bc:37:0d:67:c8",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 8,
+      "peak_rssi_dbm": -57,
+      "coverage_status": "Campus Staff / Good",
+      "is_target": false
+    },
+    {
+      "ssid": "Airtel_rake_0524",
+      "bssid": "bc:51:5f:ad:10:ed",
+      "vendor": "Airtel Broadband",
+      "band": "5 GHz",
+      "channel": 48,
+      "peak_rssi_dbm": -58,
+      "coverage_status": "ISP Gateway / Good",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Guest",
+      "bssid": "80:bc:37:4c:fc:58",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 9,
+      "peak_rssi_dbm": -59,
+      "coverage_status": "Guest / Good",
+      "is_target": false
+    },
+    {
+      "ssid": "vivo Y22",
+      "bssid": "5a:4d:7f:b4:8c:a8",
+      "vendor": "Mobile Hotspot",
+      "band": "2.4 GHz",
+      "channel": 6,
+      "peak_rssi_dbm": -61,
+      "coverage_status": "Rogue Hotspot / Fair",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Student",
+      "bssid": "80:bc:37:8c:fc:58",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 13,
+      "peak_rssi_dbm": -63,
+      "coverage_status": "Target / Fair",
+      "is_target": true
+    },
+    {
+      "ssid": "Redmi 13C 5G",
+      "bssid": "66:7b:38:dc:63:1e",
+      "vendor": "Mobile Hotspot",
+      "band": "5 GHz",
+      "channel": 44,
+      "peak_rssi_dbm": -64,
+      "coverage_status": "Rogue Hotspot / Fair",
+      "is_target": false
+    },
+    {
+      "ssid": "Jain_Employee",
+      "bssid": "80:bc:37:0c:fc:58",
+      "vendor": "Ruckus Wireless",
+      "band": "2.4 GHz",
+      "channel": 13,
+      "peak_rssi_dbm": -65,
+      "coverage_status": "Campus Staff / Fair",
+      "is_target": false
+    }
+  ],
+  "waypoint_evidence": {
+    "point_id": "Photo 36/38",
+    "timestamp": "2026-10-13T10:49:03Z",
+    "facility": "HP WORLD Tech Care @ Campus",
+    "pose_offset": {
+      "x_m": 122.9,
+      "y_m": 26.6,
+      "notes": "122.9m from left edge, 26.6m from bottom edge"
+    },
+    "networks_at_capture": [
+      {
+        "ssid": "Airtel_rake_0524",
+        "bssid": "bc:51:5f:ad:10:ec",
+        "band": "2.4 GHz",
+        "ch": 11,
+        "freq_mhz": 2462,
+        "rssi_dbm": -46
+      },
+      {
+        "ssid": "Jain_Employee",
+        "bssid": "80:bc:37:0d:67:c8",
+        "band": "2.4 GHz",
+        "ch": 8,
+        "freq_mhz": 2447,
+        "rssi_dbm": -57
+      },
+      {
+        "ssid": "Airtel_rake_0524",
+        "bssid": "bc:51:5f:ad:10:ed",
+        "band": "5 GHz",
+        "ch": 48,
+        "freq_mhz": 5240,
+        "rssi_dbm": -58
+      },
+      {
+        "ssid": "Jain_Guest",
+        "bssid": "80:bc:37:4c:fc:58",
+        "band": "2.4 GHz",
+        "ch": 9,
+        "freq_mhz": 2452,
+        "rssi_dbm": -59
+      },
+      {
+        "ssid": "vivo Y22",
+        "bssid": "5a:4d:7f:b4:8c:a8",
+        "band": "2.4 GHz",
+        "ch": 6,
+        "freq_mhz": 2437,
+        "rssi_dbm": -61
+      },
+      {
+        "ssid": "Jain_Student",
+        "bssid": "80:bc:37:8c:fc:58",
+        "band": "2.4 GHz",
+        "ch": 13,
+        "freq_mhz": 2472,
+        "rssi_dbm": -63
+      },
+      {
+        "ssid": "Redmi 13C 5G",
+        "bssid": "66:7b:38:dc:63:1e",
+        "band": "5 GHz",
+        "ch": 44,
+        "freq_mhz": 5220,
+        "rssi_dbm": -64
+      },
+      {
+        "ssid": "Jain_Employee",
+        "bssid": "80:bc:37:0c:fc:58",
+        "band": "2.4 GHz",
+        "ch": 13,
+        "freq_mhz": 2472,
+        "rssi_dbm": -65
+      }
+    ]
+  },
+  "engineering_recommendations": [
+    {
+      "category": "Coverage Optimization",
+      "finding": "13% of the surveyed footprint suffers from dead zones (< -85 dBm) in outer corridors.",
+      "action": "Deploy 2 supplementary Ruckus APs (or reposition existing AP 80:bc:37:0d:10:d8) to eliminate peripheral dead corridors."
+    },
+    {
+      "category": "Band Steering",
+      "finding": "5 GHz deployment is robust (66.9% of APs), but 33% of clients connect over crowded 2.4 GHz channels (Ch 1, 6, 11).",
+      "action": "Enable aggressive 802.11k/v/r band steering on the Ruckus ZoneDirector/SmartZone controller to push capable devices to 5 GHz."
+    },
+    {
+      "category": "Interference & Rogue APs",
+      "finding": "Observed multiple active personal mobile hotspots (vivo Y22, Redmi 13C) and third-party ISP gateways broadcasting on standard channels.",
+      "action": "Enable Rogue AP containment and adjust channel allocation to minimize adjacent channel bleed on Ch 4 and Ch 8."
+    }
+  ],
+  "heatmap_grid": {
+    "floor_width_m": 150,
+    "floor_height_m": 35,
+    "total_points": 210,
+    "ap_positions": [
+      {
+        "x": 15.0,
+        "y": 17.5,
+        "ssid": "Jain_Student",
+        "power": -25
+      },
+      {
+        "x": 35.0,
+        "y": 17.5,
+        "ssid": "Jain_Student",
+        "power": -25
+      },
+      {
+        "x": 55.0,
+        "y": 17.5,
+        "ssid": "Jain_Employee",
+        "power": -25
+      },
+      {
+        "x": 75.0,
+        "y": 17.5,
+        "ssid": "Jain_Student",
+        "power": -39
+      },
+      {
+        "x": 95.0,
+        "y": 17.5,
+        "ssid": "Jain_Employee",
+        "power": -38
+      },
+      {
+        "x": 115.0,
+        "y": 17.5,
+        "ssid": "Jain_Student",
+        "power": -48
+      },
+      {
+        "x": 122.9,
+        "y": 26.6,
+        "ssid": "Airtel_rake_0524",
+        "power": -46
+      },
+      {
+        "x": 135.0,
+        "y": 17.5,
+        "ssid": "Jain_Guest",
+        "power": -59
+      }
+    ],
+    "measurement_points": [
+      {
+        "x_m": 0.4,
+        "y_m": 0,
+        "best_rssi_dbm": -36,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 0,
+        "y_m": 5.0,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 0.9,
+        "y_m": 10.6,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 0.9,
+        "y_m": 15.7,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 0.6,
+        "y_m": 18.6,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 0,
+        "y_m": 24.1,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 1.5,
+        "y_m": 30.4,
+        "best_rssi_dbm": -36,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 4.1,
+        "y_m": 1.3,
+        "best_rssi_dbm": -39,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 5.2,
+        "y_m": 4.3,
+        "best_rssi_dbm": -35,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 3.8,
+        "y_m": 10.4,
+        "best_rssi_dbm": -35,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 3.5,
+        "y_m": 15.7,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 6.1,
+        "y_m": 19.3,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 5.8,
+        "y_m": 25.1,
+        "best_rssi_dbm": -34,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 4.4,
+        "y_m": 28.7,
+        "best_rssi_dbm": -36,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 9.9,
+        "y_m": 0.1,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 11.5,
+        "y_m": 5.4,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 8.7,
+        "y_m": 10.4,
+        "best_rssi_dbm": -28,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 11.3,
+        "y_m": 15.2,
+        "best_rssi_dbm": -27,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 10.7,
+        "y_m": 20.5,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 9.8,
+        "y_m": 24.3,
+        "best_rssi_dbm": -28,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 11.4,
+        "y_m": 31.3,
+        "best_rssi_dbm": -36,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 14.3,
+        "y_m": 0.9,
+        "best_rssi_dbm": -34,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 16.4,
+        "y_m": 5.2,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 13.7,
+        "y_m": 9.1,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 14.8,
+        "y_m": 15.3,
+        "best_rssi_dbm": -26,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 14.4,
+        "y_m": 20.8,
+        "best_rssi_dbm": -25,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 16.1,
+        "y_m": 26.1,
+        "best_rssi_dbm": -29,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 16.0,
+        "y_m": 29.4,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 20.7,
+        "y_m": 0,
+        "best_rssi_dbm": -36,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 18.5,
+        "y_m": 5.8,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 21.2,
+        "y_m": 10.1,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 21.2,
+        "y_m": 14.1,
+        "best_rssi_dbm": -27,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 21.1,
+        "y_m": 21.4,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 20.9,
+        "y_m": 24.3,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 20.9,
+        "y_m": 29.2,
+        "best_rssi_dbm": -28,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 26.4,
+        "y_m": 0.1,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 25.7,
+        "y_m": 4.4,
+        "best_rssi_dbm": -34,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 25.1,
+        "y_m": 10.7,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 25.7,
+        "y_m": 14.4,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 26.2,
+        "y_m": 20.3,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 24.8,
+        "y_m": 24.1,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 26.0,
+        "y_m": 30.8,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 29.7,
+        "y_m": 0.4,
+        "best_rssi_dbm": -35,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 28.8,
+        "y_m": 4.8,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 30.5,
+        "y_m": 11.5,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 31.2,
+        "y_m": 15.7,
+        "best_rssi_dbm": -25,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 28.7,
+        "y_m": 19.4,
+        "best_rssi_dbm": -27,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 29.7,
+        "y_m": 25.1,
+        "best_rssi_dbm": -28,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 29.6,
+        "y_m": 28.5,
+        "best_rssi_dbm": -34,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 34.2,
+        "y_m": 0,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 35.4,
+        "y_m": 3.6,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 34.1,
+        "y_m": 9.5,
+        "best_rssi_dbm": -28,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 36.5,
+        "y_m": 14.5,
+        "best_rssi_dbm": -29,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 33.9,
+        "y_m": 20.5,
+        "best_rssi_dbm": -25,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 36.0,
+        "y_m": 26.4,
+        "best_rssi_dbm": -26,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 35.6,
+        "y_m": 30.4,
+        "best_rssi_dbm": -34,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 39.8,
+        "y_m": 0,
+        "best_rssi_dbm": -34,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 40.6,
+        "y_m": 4.8,
+        "best_rssi_dbm": -34,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 39.3,
+        "y_m": 11.1,
+        "best_rssi_dbm": -26,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 41.1,
+        "y_m": 14.0,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 38.8,
+        "y_m": 20.7,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 40.6,
+        "y_m": 24.4,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 39.3,
+        "y_m": 28.9,
+        "best_rssi_dbm": -29,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 46.4,
+        "y_m": 0.1,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 46.4,
+        "y_m": 5.2,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 44.1,
+        "y_m": 8.7,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 45.2,
+        "y_m": 14.4,
+        "best_rssi_dbm": -28,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 44.8,
+        "y_m": 21.1,
+        "best_rssi_dbm": -29,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 45.5,
+        "y_m": 24.0,
+        "best_rssi_dbm": -27,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 45.6,
+        "y_m": 29.9,
+        "best_rssi_dbm": -36,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 50.4,
+        "y_m": 1.2,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 50.6,
+        "y_m": 5.6,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 48.8,
+        "y_m": 11.4,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 49.9,
+        "y_m": 15.5,
+        "best_rssi_dbm": -29,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 50.5,
+        "y_m": 21.1,
+        "best_rssi_dbm": -26,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 49.5,
+        "y_m": 26.4,
+        "best_rssi_dbm": -34,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 50.8,
+        "y_m": 30.4,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 55.3,
+        "y_m": 0,
+        "best_rssi_dbm": -35,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 56.0,
+        "y_m": 5.0,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 56.3,
+        "y_m": 10.0,
+        "best_rssi_dbm": -27,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 54.3,
+        "y_m": 14.4,
+        "best_rssi_dbm": -27,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 54.9,
+        "y_m": 19.5,
+        "best_rssi_dbm": -27,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 55.9,
+        "y_m": 24.7,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 56.1,
+        "y_m": 29.8,
+        "best_rssi_dbm": -34,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 59.5,
+        "y_m": 0.6,
+        "best_rssi_dbm": -37,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 61.1,
+        "y_m": 3.6,
+        "best_rssi_dbm": -37,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 61.1,
+        "y_m": 9.8,
+        "best_rssi_dbm": -27,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 60.2,
+        "y_m": 15.9,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 59.3,
+        "y_m": 19.3,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 60.4,
+        "y_m": 24.8,
+        "best_rssi_dbm": -28,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 61.5,
+        "y_m": 29.4,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 65.0,
+        "y_m": 1.2,
+        "best_rssi_dbm": -36,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 65.5,
+        "y_m": 6.0,
+        "best_rssi_dbm": -35,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 64.4,
+        "y_m": 10.7,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 66.0,
+        "y_m": 14.9,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 65.7,
+        "y_m": 21.4,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 65.5,
+        "y_m": 25.3,
+        "best_rssi_dbm": -29,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 64.2,
+        "y_m": 28.7,
+        "best_rssi_dbm": -31,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 68.8,
+        "y_m": 1.2,
+        "best_rssi_dbm": -38,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 69.7,
+        "y_m": 3.8,
+        "best_rssi_dbm": -40,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 68.8,
+        "y_m": 10.6,
+        "best_rssi_dbm": -32,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 70.5,
+        "y_m": 15.4,
+        "best_rssi_dbm": -36,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 69.1,
+        "y_m": 19.1,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 69.3,
+        "y_m": 24.0,
+        "best_rssi_dbm": -30,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 70.7,
+        "y_m": 30.1,
+        "best_rssi_dbm": -38,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 75.8,
+        "y_m": 1.1,
+        "best_rssi_dbm": -43,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 76.2,
+        "y_m": 3.7,
+        "best_rssi_dbm": -35,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 75.1,
+        "y_m": 9.9,
+        "best_rssi_dbm": -38,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 74.9,
+        "y_m": 14.2,
+        "best_rssi_dbm": -35,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 76.3,
+        "y_m": 18.7,
+        "best_rssi_dbm": -33,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 74.5,
+        "y_m": 23.9,
+        "best_rssi_dbm": -38,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 75.2,
+        "y_m": 29.1,
+        "best_rssi_dbm": -35,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 81.0,
+        "y_m": 1.4,
+        "best_rssi_dbm": -43,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 80.6,
+        "y_m": 4.4,
+        "best_rssi_dbm": -44,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 80.7,
+        "y_m": 9.1,
+        "best_rssi_dbm": -39,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 79.0,
+        "y_m": 15.4,
+        "best_rssi_dbm": -40,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 79.8,
+        "y_m": 19.3,
+        "best_rssi_dbm": -39,
+        "best_ssid": "Jain_Student",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 79.1,
+        "y_m": 23.9,
+        "best_rssi_dbm": -35,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 81.0,
+        "y_m": 30.9,
+        "best_rssi_dbm": -37,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 85.6,
+        "y_m": 0,
+        "best_rssi_dbm": -43,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 86.0,
+        "y_m": 4.2,
+        "best_rssi_dbm": -43,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 83.8,
+        "y_m": 10.0,
+        "best_rssi_dbm": -43,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 85.3,
+        "y_m": 15.8,
+        "best_rssi_dbm": -44,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 85.2,
+        "y_m": 20.4,
+        "best_rssi_dbm": -40,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 83.7,
+        "y_m": 25.0,
+        "best_rssi_dbm": -38,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 85.0,
+        "y_m": 29.9,
+        "best_rssi_dbm": -46,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 89.0,
+        "y_m": 0,
+        "best_rssi_dbm": -45,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 89.8,
+        "y_m": 5.1,
+        "best_rssi_dbm": -44,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 88.7,
+        "y_m": 8.8,
+        "best_rssi_dbm": -46,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 88.9,
+        "y_m": 14.5,
+        "best_rssi_dbm": -43,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 90.9,
+        "y_m": 20.5,
+        "best_rssi_dbm": -42,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 89.0,
+        "y_m": 24.1,
+        "best_rssi_dbm": -40,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 91.0,
+        "y_m": 31.2,
+        "best_rssi_dbm": -45,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 95.9,
+        "y_m": 0,
+        "best_rssi_dbm": -47,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 95.1,
+        "y_m": 4.4,
+        "best_rssi_dbm": -49,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 94.6,
+        "y_m": 10.1,
+        "best_rssi_dbm": -40,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 93.8,
+        "y_m": 16.0,
+        "best_rssi_dbm": -42,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 94.2,
+        "y_m": 19.9,
+        "best_rssi_dbm": -38,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 96.3,
+        "y_m": 26.0,
+        "best_rssi_dbm": -45,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 94.8,
+        "y_m": 28.5,
+        "best_rssi_dbm": -46,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 99.4,
+        "y_m": 0,
+        "best_rssi_dbm": -51,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 99.2,
+        "y_m": 3.9,
+        "best_rssi_dbm": -47,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 100.1,
+        "y_m": 10.0,
+        "best_rssi_dbm": -44,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 100.9,
+        "y_m": 14.5,
+        "best_rssi_dbm": -40,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 99.0,
+        "y_m": 20.8,
+        "best_rssi_dbm": -38,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 98.6,
+        "y_m": 24.1,
+        "best_rssi_dbm": -42,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 99.6,
+        "y_m": 30.8,
+        "best_rssi_dbm": -48,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 106.4,
+        "y_m": 0,
+        "best_rssi_dbm": -51,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 105.1,
+        "y_m": 4.5,
+        "best_rssi_dbm": -46,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 106.1,
+        "y_m": 9.6,
+        "best_rssi_dbm": -42,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 105.5,
+        "y_m": 16.4,
+        "best_rssi_dbm": -40,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 105.2,
+        "y_m": 20.3,
+        "best_rssi_dbm": -44,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 104.2,
+        "y_m": 23.8,
+        "best_rssi_dbm": -42,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 104.4,
+        "y_m": 31.2,
+        "best_rssi_dbm": -50,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 111.0,
+        "y_m": 0,
+        "best_rssi_dbm": -54,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 110.9,
+        "y_m": 5.0,
+        "best_rssi_dbm": -45,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 110.2,
+        "y_m": 10.3,
+        "best_rssi_dbm": -47,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 111.4,
+        "y_m": 15.4,
+        "best_rssi_dbm": -49,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 109.8,
+        "y_m": 21.2,
+        "best_rssi_dbm": -45,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 111.2,
+        "y_m": 26.0,
+        "best_rssi_dbm": -46,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 111.3,
+        "y_m": 29.0,
+        "best_rssi_dbm": -49,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 115.4,
+        "y_m": 0.2,
+        "best_rssi_dbm": -53,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 114.9,
+        "y_m": 5.9,
+        "best_rssi_dbm": -50,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 114.4,
+        "y_m": 10.7,
+        "best_rssi_dbm": -48,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 114.3,
+        "y_m": 14.2,
+        "best_rssi_dbm": -47,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 115.2,
+        "y_m": 19.4,
+        "best_rssi_dbm": -48,
+        "best_ssid": "Jain_Employee",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 116.4,
+        "y_m": 24.1,
+        "best_rssi_dbm": -50,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 114.8,
+        "y_m": 31.1,
+        "best_rssi_dbm": -52,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 120.0,
+        "y_m": 0.8,
+        "best_rssi_dbm": -57,
+        "best_ssid": "Jain_Student",
+        "zone": "good"
+      },
+      {
+        "x_m": 121.3,
+        "y_m": 5.8,
+        "best_rssi_dbm": -51,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 120.3,
+        "y_m": 10.0,
+        "best_rssi_dbm": -51,
+        "best_ssid": "Jain_Student",
+        "zone": "good"
+      },
+      {
+        "x_m": 120.1,
+        "y_m": 15.6,
+        "best_rssi_dbm": -52,
+        "best_ssid": "Jain_Student",
+        "zone": "good"
+      },
+      {
+        "x_m": 120.6,
+        "y_m": 18.6,
+        "best_rssi_dbm": -51,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 120.4,
+        "y_m": 25.4,
+        "best_rssi_dbm": -46,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 119.0,
+        "y_m": 30.6,
+        "best_rssi_dbm": -46,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 124.5,
+        "y_m": 0.5,
+        "best_rssi_dbm": -55,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 125.4,
+        "y_m": 5.6,
+        "best_rssi_dbm": -54,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 124.1,
+        "y_m": 10.6,
+        "best_rssi_dbm": -51,
+        "best_ssid": "Jain_Student",
+        "zone": "good"
+      },
+      {
+        "x_m": 126.4,
+        "y_m": 16.0,
+        "best_rssi_dbm": -52,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 124.9,
+        "y_m": 19.1,
+        "best_rssi_dbm": -48,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 125.1,
+        "y_m": 25.4,
+        "best_rssi_dbm": -48,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 124.7,
+        "y_m": 31.3,
+        "best_rssi_dbm": -52,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 130.2,
+        "y_m": 0.1,
+        "best_rssi_dbm": -58,
+        "best_ssid": "Jain_Student",
+        "zone": "good"
+      },
+      {
+        "x_m": 129.7,
+        "y_m": 5.0,
+        "best_rssi_dbm": -54,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 129.4,
+        "y_m": 11.5,
+        "best_rssi_dbm": -52,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 129.9,
+        "y_m": 14.3,
+        "best_rssi_dbm": -54,
+        "best_ssid": "Jain_Student",
+        "zone": "good"
+      },
+      {
+        "x_m": 131.0,
+        "y_m": 20.0,
+        "best_rssi_dbm": -50,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 130.8,
+        "y_m": 26.4,
+        "best_rssi_dbm": -47,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "excellent"
+      },
+      {
+        "x_m": 129.7,
+        "y_m": 30.0,
+        "best_rssi_dbm": -51,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 133.9,
+        "y_m": 0,
+        "best_rssi_dbm": -61,
+        "best_ssid": "Jain_Employee",
+        "zone": "good"
+      },
+      {
+        "x_m": 134.2,
+        "y_m": 5.8,
+        "best_rssi_dbm": -56,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 135.0,
+        "y_m": 10.2,
+        "best_rssi_dbm": -54,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 135.9,
+        "y_m": 14.9,
+        "best_rssi_dbm": -55,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 135.7,
+        "y_m": 20.2,
+        "best_rssi_dbm": -56,
+        "best_ssid": "Jain_Student",
+        "zone": "good"
+      },
+      {
+        "x_m": 134.7,
+        "y_m": 25.8,
+        "best_rssi_dbm": -55,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 134.6,
+        "y_m": 30.5,
+        "best_rssi_dbm": -53,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 139.2,
+        "y_m": 0,
+        "best_rssi_dbm": -61,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 139.3,
+        "y_m": 6.3,
+        "best_rssi_dbm": -56,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 138.8,
+        "y_m": 8.6,
+        "best_rssi_dbm": -57,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 138.7,
+        "y_m": 15.0,
+        "best_rssi_dbm": -55,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 138.9,
+        "y_m": 20.5,
+        "best_rssi_dbm": -56,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 140.0,
+        "y_m": 26.4,
+        "best_rssi_dbm": -54,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 139.9,
+        "y_m": 31.0,
+        "best_rssi_dbm": -56,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 144.2,
+        "y_m": 0,
+        "best_rssi_dbm": -63,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 145.3,
+        "y_m": 6.1,
+        "best_rssi_dbm": -61,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 143.5,
+        "y_m": 11.3,
+        "best_rssi_dbm": -58,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 145.2,
+        "y_m": 15.8,
+        "best_rssi_dbm": -56,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 144.9,
+        "y_m": 21.0,
+        "best_rssi_dbm": -57,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 145.2,
+        "y_m": 24.8,
+        "best_rssi_dbm": -60,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      },
+      {
+        "x_m": 146.0,
+        "y_m": 31.4,
+        "best_rssi_dbm": -59,
+        "best_ssid": "Airtel_rake_0524",
+        "zone": "good"
+      }
+    ]
+  }
+}

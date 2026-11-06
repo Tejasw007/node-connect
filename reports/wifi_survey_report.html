@@ -1,0 +1,3088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wi-Fi Site Survey & Coverage Audit Report | NodeConnect</title>
+  <meta name="description" content="Executive engineering report and spatial RF analysis for Project 1 - Jain_Student campus facility.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-surface: #1e293b;
+      --bg-surface-elevated: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.25);
+      --emerald: #10b981;
+      --emerald-bg: rgba(16, 185, 129, 0.15);
+      --blue: #3b82f6;
+      --blue-bg: rgba(59, 130, 246, 0.15);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245, 158, 11, 0.15);
+      --orange: #f97316;
+      --orange-bg: rgba(249, 115, 22, 0.15);
+      --rose: #ef4444;
+      --rose-bg: rgba(239, 68, 68, 0.15);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.3);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --accent-glow: rgba(99, 102, 241, 0.12);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 32px 16px 80px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header & Action Bar */
+    header {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #6366f1, #3b82f6, #10b981);
+    }
+
+    .header-content {
+      flex: 1;
+      min-width: 320px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .brand-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: var(--accent-glow);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .verified-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: var(--emerald-bg);
+      color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .verified-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .header-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .header-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: #4f46e5;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #4338ca;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border-color: var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .kpi-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+
+    .kpi-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Section Card */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-title svg {
+      width: 20px;
+      height: 20px;
+      color: #818cf8;
+    }
+
+    /* Coverage Progress Bar */
+    .coverage-bar-wrapper {
+      margin-bottom: 24px;
+    }
+
+    .coverage-bar-track {
+      height: 28px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      display: flex;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .coverage-segment {
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      cursor: default;
+    }
+
+    .coverage-segment:hover {
+      opacity: 0.9;
+    }
+
+    .seg-excellent { background: var(--emerald); width: 9%; }
+    .seg-good { background: var(--blue); width: 20%; }
+    .seg-fair { background: var(--amber); width: 36%; color: #1e293b; }
+    .seg-poor { background: var(--orange); width: 22%; }
+    .seg-dead { background: var(--rose); width: 13%; }
+
+    .coverage-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-surface-elevated);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .legend-text {
+      font-size: 0.82rem;
+    }
+
+    .legend-text strong {
+      display: block;
+      color: var(--text-main);
+    }
+
+    .legend-text span {
+      color: var(--text-dim);
+      font-size: 0.75rem;
+    }
+
+    /* Two Column Layout */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Spectrum Rollup */
+    .spectrum-container {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 16px;
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .spectrum-stat {
+      flex: 1;
+      text-align: center;
+    }
+
+    .spectrum-divider {
+      width: 1px;
+      height: 50px;
+      background: var(--border-color);
+    }
+
+    /* Maps & Visual Evidence */
+    .image-viewer {
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .image-viewer img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 420px;
+    }
+
+    .image-caption {
+      padding: 12px 16px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-surface);
+    }
+
+    /* Filter & Search Bar */
+    .table-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface-elevated);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .search-box {
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 240px;
+      outline: none;
+    }
+
+    .search-box:focus {
+      border-color: var(--accent);
+    }
+
+    /* Data Table */
+    .table-responsive {
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    th {
+      background: var(--bg-surface-elevated);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .tag-target {
+      background: var(--emerald-bg);
+      color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .tag-staff {
+      background: var(--blue-bg);
+      color: var(--blue);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .tag-guest {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .tag-hotspot {
+      background: var(--rose-bg);
+      color: var(--rose);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .signal-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .signal-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* Recommendations */
+    .rec-card {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .rec-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .rec-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* ===== Heatmap Section ===== */
+    .heatmap-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface-elevated);
+    }
+
+    #heatmapCanvas {
+      display: block;
+      width: 100%;
+      cursor: crosshair;
+    }
+
+    .heatmap-tooltip {
+      position: absolute;
+      padding: 10px 14px;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      color: #f8fafc;
+      font-size: 0.78rem;
+      font-family: 'JetBrains Mono', monospace;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      z-index: 100;
+      white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .heatmap-tooltip.visible {
+      opacity: 1;
+    }
+
+    .heatmap-tooltip .tt-ssid {
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .heatmap-tooltip .tt-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      line-height: 1.6;
+    }
+
+    .heatmap-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .heatmap-legend {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .hm-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+    }
+
+    .hm-legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .hm-coord-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      padding: 6px 12px;
+      background: var(--bg-surface);
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      min-width: 200px;
+      text-align: center;
+    }
+
+    /* Print Styles (PDF Generation) */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        padding: 0 !important;
+        font-size: 11pt;
+      }
+
+      .container {
+        max-width: 100% !important;
+      }
+
+      .header-actions, .table-controls, #themeBtn, .heatmap-toolbar .filter-group {
+        display: none !important;
+      }
+
+      header, .card, .kpi-card, .image-viewer {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+      }
+
+      th {
+        background: #f1f5f9 !important;
+        color: #334155 !important;
+      }
+
+      td {
+        color: #0f172a !important;
+      }
+
+      .kpi-value, h1, .card-title {
+        color: #0f172a !important;
+      }
+
+      .coverage-bar-track {
+        border: 1px solid #cbd5e1 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page-break {
+        page-break-before: always;
+        break-before: page;
+      }
+
+      .avoid-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      #heatmapCanvas {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Header Section -->
+    <header>
+      <div class="header-content">
+        <div class="brand-row">
+          <span class="brand-badge">NodeConnect Analytics</span>
+          <span class="verified-badge">
+            <svg viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+            Watermark Filtered & Verified
+          </span>
+        </div>
+        <h1>Wi-Fi Site Survey & Coverage Audit Report</h1>
+        <div class="header-meta">
+          <span><strong>Project:</strong> Project 1 - Jain_Student</span>
+          <span><strong>Scan ID:</strong> Scan 1</span>
+          <span><strong>Facility:</strong> DMGT EL Campus Block</span>
+          <span><strong>Captured:</strong> 2026-10-13 10:36 UTC</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="themeBtn" class="btn btn-secondary" onclick="toggleTheme()" title="Toggle Theme">
+          🌙 Dark / Light
+        </button>
+        <button class="btn btn-secondary" onclick="downloadCSV()" title="Download CSV Data">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          CSV Export
+        </button>
+        <button class="btn btn-primary" onclick="window.print()" title="Print / Download Clean PDF">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2m-4 0v4H8v-4m8 0H8"/></svg>
+          Download PDF
+        </button>
+      </div>
+    </header>
+
+    <!-- Executive KPI Scorecards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Survey Duration</div>
+        <div class="kpi-value">13m 3s</div>
+        <div class="kpi-sub">Continuous survey walk</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Spatial Samples</div>
+        <div class="kpi-value">404</div>
+        <div class="kpi-sub">RF beacon observations</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Unique Radios (APs)</div>
+        <div class="kpi-value">275</div>
+        <div class="kpi-sub">91 @ 2.4 GHz • 184 @ 5 GHz</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Audited Floor Area</div>
+        <div class="kpi-value">~925.8 m²</div>
+        <div class="kpi-sub">Active tracking: 35%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Target Peak RSSI</div>
+        <div class="kpi-value" style="color: var(--emerald);">-25 dBm</div>
+        <div class="kpi-sub">Jain_Student (Ruckus)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Usable Coverage</div>
+        <div class="kpi-value">65%</div>
+        <div class="kpi-sub">Excellent + Good + Fair</div>
+      </div>
+    </div>
+
+    <!-- Coverage Breakdown -->
+    <div class="card avoid-break">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+          Signal Strength & Coverage Health Breakdown
+        </h2>
+        <span class="mono" style="font-size: 0.8rem;">Threshold: -85 dBm Min Cutoff</span>
+      </div>
+
+      <div class="coverage-bar-wrapper">
+        <div class="coverage-bar-track">
+          <div class="coverage-segment seg-excellent" title="9% Excellent (> -50 dBm)">9%</div>
+          <div class="coverage-segment seg-good" title="20% Good (-50 to -65 dBm)">20%</div>
+          <div class="coverage-segment seg-fair" title="36% Fair (-65 to -75 dBm)">36%</div>
+          <div class="coverage-segment seg-poor" title="22% Poor (-75 to -85 dBm)">22%</div>
+          <div class="coverage-segment seg-dead" title="13% Dead (< -85 dBm)">13%</div>
+        </div>
+
+        <div class="coverage-legend">
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--emerald);"></div>
+            <div class="legend-text">
+              <strong>9% Excellent</strong>
+              <span>&gt; -50 dBm (Near AP)</span>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--blue);"></div>
+            <div class="legend-text">
+              <strong>20% Good</strong>
+              <span>-50 to -65 dBm (Streaming/VoIP)</span>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--amber);"></div>
+            <div class="legend-text">
+              <strong>36% Fair</strong>
+              <span>-65 to -75 dBm (Web/Email)</span>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--orange);"></div>
+            <div class="legend-text">
+              <strong>22% Poor</strong>
+              <span>-75 to -85 dBm (Borderline)</span>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background: var(--rose);"></div>
+            <div class="legend-text">
+              <strong>13% Dead Zone</strong>
+              <span>&lt; -85 dBm (Unserved)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spectrum & Hardware Distribution -->
+    <div class="grid-2col avoid-break">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Radio Spectrum Rollup</h3>
+        </div>
+        <div class="spectrum-container">
+          <div class="spectrum-stat">
+            <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700;">2.4 GHz Band</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #818cf8; margin: 4px 0;">91 APs</div>
+            <div style="font-size: 0.82rem; color: var(--text-muted);">33.1% of Radios</div>
+          </div>
+          <div class="spectrum-divider"></div>
+          <div class="spectrum-stat">
+            <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700;">5 GHz Band</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #38bdf8; margin: 4px 0;">184 APs</div>
+            <div style="font-size: 0.82rem; color: var(--text-muted);">66.9% of Radios</div>
+          </div>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 14px;">
+          <strong>Deployment Note:</strong> The campus infrastructure heavily leverages 5 GHz capacity (2:1 ratio over 2.4 GHz), offering superior throughput and low co-channel congestion.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Hardware & Surveyor Metadata</h3>
+        </div>
+        <ul style="list-style: none; font-size: 0.88rem; display: flex; flex-direction: column; gap: 10px;">
+          <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+            <span style="color: var(--text-muted);">Primary AP Vendor:</span>
+            <strong>Ruckus Wireless (Enterprise)</strong>
+          </li>
+          <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+            <span style="color: var(--text-muted);">Survey Tool:</span>
+            <span>NetLens Pro 1.9.2</span>
+          </li>
+          <li style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+            <span style="color: var(--text-muted);">Capture Device:</span>
+            <span>OPPO CPH2739 (Android 16, API 36)</span>
+          </li>
+          <li style="display: flex; justify-content: space-between;">
+            <span style="color: var(--text-muted);">Source Evidence:</span>
+            <span>72 Photographic captures (DMGT EL)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ===== Interactive Signal Strength Heatmap ===== -->
+    <div class="card" id="heatmapSection">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clip-rule="evenodd"/></svg>
+          Interactive RF Signal Strength Heatmap
+        </h2>
+        <span class="mono" style="font-size: 0.8rem;">150m × 35m Floor Plan Grid • 210 Sample Points</span>
+      </div>
+
+      <div class="heatmap-toolbar">
+        <div class="filter-group">
+          <button class="filter-btn active" onclick="setHeatmapFilter('all', this)">All Networks</button>
+          <button class="filter-btn" onclick="setHeatmapFilter('Jain_Student', this)">Jain_Student</button>
+          <button class="filter-btn" onclick="setHeatmapFilter('Jain_Employee', this)">Jain_Employee</button>
+          <button class="filter-btn" onclick="setHeatmapFilter('Airtel_rake_0524', this)">Airtel</button>
+        </div>
+        <div class="hm-coord-display" id="coordDisplay">Hover over heatmap for coordinates</div>
+      </div>
+
+      <div class="heatmap-wrapper" id="heatmapContainer">
+        <canvas id="heatmapCanvas" height="350"></canvas>
+        <div class="heatmap-tooltip" id="heatmapTooltip">
+          <div class="tt-ssid" id="ttSsid"></div>
+          <div class="tt-row"><span>Coordinate:</span><span id="ttCoord"></span></div>
+          <div class="tt-row"><span>Signal:</span><span id="ttRssi"></span></div>
+          <div class="tt-row"><span>Zone:</span><span id="ttZone"></span></div>
+        </div>
+      </div>
+
+      <div class="heatmap-legend">
+        <div class="hm-legend-item"><div class="hm-legend-swatch" style="background:#10b981;"></div><strong>Excellent</strong>&nbsp;&gt; -50 dBm</div>
+        <div class="hm-legend-item"><div class="hm-legend-swatch" style="background:#3b82f6;"></div><strong>Good</strong>&nbsp;-50 to -65</div>
+        <div class="hm-legend-item"><div class="hm-legend-swatch" style="background:#f59e0b;"></div><strong>Fair</strong>&nbsp;-65 to -75</div>
+        <div class="hm-legend-item"><div class="hm-legend-swatch" style="background:#f97316;"></div><strong>Poor</strong>&nbsp;-75 to -85</div>
+        <div class="hm-legend-item"><div class="hm-legend-swatch" style="background:#ef4444;"></div><strong>Dead</strong>&nbsp;&lt; -85 dBm</div>
+        <div class="hm-legend-item"><div class="hm-legend-swatch" style="background:#ffffff; border:2px solid #818cf8;"></div>📡 AP Location</div>
+      </div>
+    </div>
+
+    <!-- Spatial Evidence: Floor Plan Heatmaps & Waypoints -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z" clip-rule="evenodd"/></svg>
+          Field Survey Evidence
+        </h2>
+        <span class="mono" style="font-size: 0.8rem;">Clean High-Res Extracts</span>
+      </div>
+
+      <div class="grid-2col">
+        <!-- Overview Map -->
+        <div class="image-viewer">
+          <img src="assets/overview-map.jpg" alt="Campus Coverage Overview Map and Heatmap">
+          <div class="image-caption">
+            <span><strong>Overview Map:</strong> 404 Samples • 275 APs • Walk Path Trail</span>
+            <span class="mono">Scale: 1m Bar</span>
+          </div>
+        </div>
+
+        <!-- Waypoint #36 Context Photo -->
+        <div class="image-viewer">
+          <img src="assets/waypoint-context.jpg" alt="Waypoint #36 HP World Facility and Pose Offset">
+          <div class="image-caption">
+            <span><strong>Waypoint #36:</strong> HP WORLD Tech Care @ Campus</span>
+            <span class="mono">Offset: 122.9m X, 26.6m Y</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Access Point Directory -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zm-2.829 2.828a3 3 0 00-4.242 0 1 1 0 01-1.415-1.414 5 5 0 017.072 0 1 1 0 01-1.415 1.414zM9 16a1 1 0 112 0 1 1 0 01-2 0z" clip-rule="evenodd"/></svg>
+          Infrastructure Access Points Directory
+        </h2>
+        <span class="mono" style="font-size: 0.8rem;">18 Audited Radios</span>
+      </div>
+
+      <div class="table-controls">
+        <div class="filter-group">
+          <button class="filter-btn active" onclick="filterTable('all', this)">All Networks</button>
+          <button class="filter-btn" onclick="filterTable('target', this)">Target (Jain_Student)</button>
+          <button class="filter-btn" onclick="filterTable('staff', this)">Staff (Jain_Employee)</button>
+          <button class="filter-btn" onclick="filterTable('2.4', this)">2.4 GHz</button>
+          <button class="filter-btn" onclick="filterTable('5', this)">5 GHz</button>
+        </div>
+        <input type="text" id="searchInput" class="search-box" placeholder="Search SSID or MAC..." onkeyup="searchTable()">
+      </div>
+
+      <div class="table-responsive">
+        <table id="apTable">
+          <thead>
+            <tr>
+              <th>SSID</th>
+              <th>BSSID (MAC Address)</th>
+              <th>Vendor</th>
+              <th>Band / Channel</th>
+              <th>Peak RSSI</th>
+              <th>Classification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-type="target" data-band="2.4">
+              <td><strong>Jain_Student</strong> <span class="tag tag-target">Target</span></td>
+              <td class="mono">c8:a6:08:b8:5f:28</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 1)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--emerald);">
+                  <span class="signal-indicator" style="background: var(--emerald);"></span>
+                  -25 dBm
+                </span>
+              </td>
+              <td>Target Campus AP</td>
+            </tr>
+            <tr data-type="staff" data-band="2.4">
+              <td><strong>Jain_Employee</strong> <span class="tag tag-staff">Staff</span></td>
+              <td class="mono">c8:a6:08:38:5f:28</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 1)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--emerald);">
+                  <span class="signal-indicator" style="background: var(--emerald);"></span>
+                  -25 dBm
+                </span>
+              </td>
+              <td>Faculty / Admin</td>
+            </tr>
+            <tr data-type="guest" data-band="2.4">
+              <td><strong>Jain_Guest</strong> <span class="tag tag-guest">Guest</span></td>
+              <td class="mono">c8:a6:08:78:5f:28</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 1)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--emerald);">
+                  <span class="signal-indicator" style="background: var(--emerald);"></span>
+                  -25 dBm
+                </span>
+              </td>
+              <td>Visitor Portal</td>
+            </tr>
+            <tr data-type="target" data-band="2.4">
+              <td><strong>Jain_Student</strong> <span class="tag tag-target">Target</span></td>
+              <td class="mono">34:fa:9f:a4:c9:88</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 6)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--emerald);">
+                  <span class="signal-indicator" style="background: var(--emerald);"></span>
+                  -39 dBm
+                </span>
+              </td>
+              <td>Target Campus AP</td>
+            </tr>
+            <tr data-type="staff" data-band="2.4">
+              <td><strong>Jain_Employee</strong> <span class="tag tag-staff">Staff</span></td>
+              <td class="mono">34:fa:9f:24:c9:88</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 6)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--emerald);">
+                  <span class="signal-indicator" style="background: var(--emerald);"></span>
+                  -38 dBm
+                </span>
+              </td>
+              <td>Faculty / Admin</td>
+            </tr>
+            <tr data-type="staff" data-band="5">
+              <td><strong>Jain_Employee</strong> <span class="tag tag-staff">Staff</span></td>
+              <td class="mono">c8:a6:08:38:5f:2c</td>
+              <td>Ruckus Wireless</td>
+              <td>5 GHz (Ch 36)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--emerald);">
+                  <span class="signal-indicator" style="background: var(--emerald);"></span>
+                  -43 dBm
+                </span>
+              </td>
+              <td>High-Speed 5G Core</td>
+            </tr>
+            <tr data-type="target" data-band="2.4">
+              <td><strong>Jain_Student</strong> <span class="tag tag-target">Target</span></td>
+              <td class="mono">34:fa:9f:aa:94:a8</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 4, 20MHz)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--blue);">
+                  <span class="signal-indicator" style="background: var(--blue);"></span>
+                  -48 dBm
+                </span>
+              </td>
+              <td>Survey Connected AP</td>
+            </tr>
+            <tr data-type="target" data-band="5">
+              <td><strong>Jain_Student</strong> <span class="tag tag-target">Target</span></td>
+              <td class="mono">34:fa:9f:aa:94:ac</td>
+              <td>Ruckus Wireless</td>
+              <td>5 GHz (Ch 116, 40MHz)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--blue);">
+                  <span class="signal-indicator" style="background: var(--blue);"></span>
+                  -57 dBm
+                </span>
+              </td>
+              <td>Survey Connected AP</td>
+            </tr>
+            <tr data-type="other" data-band="2.4">
+              <td><strong>Airtel_rake_0524</strong></td>
+              <td class="mono">bc:51:5f:ad:10:ec</td>
+              <td>Airtel Broadband</td>
+              <td>2.4 GHz (Ch 11)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--blue);">
+                  <span class="signal-indicator" style="background: var(--blue);"></span>
+                  -46 dBm
+                </span>
+              </td>
+              <td>Dedicated ISP Fiber</td>
+            </tr>
+            <tr data-type="other" data-band="5">
+              <td><strong>Airtel_rake_0524</strong></td>
+              <td class="mono">bc:51:5f:ad:10:ed</td>
+              <td>Airtel Broadband</td>
+              <td>5 GHz (Ch 48)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--blue);">
+                  <span class="signal-indicator" style="background: var(--blue);"></span>
+                  -58 dBm
+                </span>
+              </td>
+              <td>Dedicated ISP Fiber</td>
+            </tr>
+            <tr data-type="staff" data-band="2.4">
+              <td><strong>Jain_Employee</strong> <span class="tag tag-staff">Staff</span></td>
+              <td class="mono">80:bc:37:0d:67:c8</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 8)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--blue);">
+                  <span class="signal-indicator" style="background: var(--blue);"></span>
+                  -57 dBm
+                </span>
+              </td>
+              <td>Faculty / Admin</td>
+            </tr>
+            <tr data-type="guest" data-band="2.4">
+              <td><strong>Jain_Guest</strong> <span class="tag tag-guest">Guest</span></td>
+              <td class="mono">80:bc:37:4c:fc:58</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 9)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--amber);">
+                  <span class="signal-indicator" style="background: var(--amber);"></span>
+                  -59 dBm
+                </span>
+              </td>
+              <td>Visitor Portal</td>
+            </tr>
+            <tr data-type="hotspot" data-band="2.4">
+              <td><strong>vivo Y22</strong> <span class="tag tag-hotspot">Hotspot</span></td>
+              <td class="mono">5a:4d:7f:b4:8c:a8</td>
+              <td>Mobile Tether</td>
+              <td>2.4 GHz (Ch 6)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--amber);">
+                  <span class="signal-indicator" style="background: var(--amber);"></span>
+                  -61 dBm
+                </span>
+              </td>
+              <td>Rogue Mobile AP</td>
+            </tr>
+            <tr data-type="target" data-band="2.4">
+              <td><strong>Jain_Student</strong> <span class="tag tag-target">Target</span></td>
+              <td class="mono">80:bc:37:8c:fc:58</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 13)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--amber);">
+                  <span class="signal-indicator" style="background: var(--amber);"></span>
+                  -63 dBm
+                </span>
+              </td>
+              <td>Target Campus AP</td>
+            </tr>
+            <tr data-type="hotspot" data-band="5">
+              <td><strong>Redmi 13C 5G</strong> <span class="tag tag-hotspot">Hotspot</span></td>
+              <td class="mono">66:7b:38:dc:63:1e</td>
+              <td>Mobile Tether</td>
+              <td>5 GHz (Ch 44)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--amber);">
+                  <span class="signal-indicator" style="background: var(--amber);"></span>
+                  -64 dBm
+                </span>
+              </td>
+              <td>Rogue Mobile AP</td>
+            </tr>
+            <tr data-type="staff" data-band="2.4">
+              <td><strong>Jain_Employee</strong> <span class="tag tag-staff">Staff</span></td>
+              <td class="mono">80:bc:37:0c:fc:58</td>
+              <td>Ruckus Wireless</td>
+              <td>2.4 GHz (Ch 13)</td>
+              <td>
+                <span class="signal-pill" style="color: var(--amber);">
+                  <span class="signal-indicator" style="background: var(--amber);"></span>
+                  -65 dBm
+                </span>
+              </td>
+              <td>Faculty / Admin</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Engineering Recommendations -->
+    <div class="card avoid-break">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+          Engineering Findings & Remediation Plan
+        </h2>
+      </div>
+
+      <div class="rec-card">
+        <div>
+          <div class="rec-title">1. Peripheral Dead Zone Remediation (13% Footprint)</div>
+          <div class="rec-desc">
+            Signal metrics degrade past -85 dBm along the southern edge and outer access corridors. We recommend installing 1 additional Ruckus R550/R650 unit (or relocating existing AP <span class="mono">80:bc:37:0d:10:d8</span>) to achieve 100% floor plan coverage.
+          </div>
+        </div>
+      </div>
+
+      <div class="rec-card">
+        <div>
+          <div class="rec-title">2. Proactive 5 GHz Band Steering Policy</div>
+          <div class="rec-desc">
+            While 66.9% of deployed radios support 5 GHz, client telemetry reveals several high-capability student devices tethered to crowded 2.4 GHz channels. Implement 802.11k/v/r fast roaming and aggressive 5 GHz band steering on the Ruckus controller.
+          </div>
+        </div>
+      </div>
+
+      <div class="rec-card">
+        <div>
+          <div class="rec-title">3. Rogue Mobile Hotspot & Channel Bleed Containment</div>
+          <div class="rec-desc">
+            Personal smartphone hotspots (vivo Y22 on Ch 6, Redmi 13C on Ch 44) cause co-channel packet collisions with the primary student SSID. Enable WIPS (Wireless Intrusion Prevention) rogue containment and enforce standard channel re-use (1, 6, 11 on 2.4 GHz).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>NodeConnect Automated Survey & Spatial Analytics Engine • DMGT EL Campus Report</p>
+      <p style="margin-top: 4px; font-size: 0.75rem;">Source Evidence: 72 Photographs (data/raw/DMGT EL) • Verified Clean Extraction • NodeConnect v0.1.0</p>
+    </footer>
+
+  </div>
+
+  <script>
+    /* ===== Theme Toggle ===== */
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const target = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', target);
+      document.getElementById('themeBtn').textContent = target === 'light' ? '☀️ Light Mode' : '🌙 Dark Mode';
+      drawHeatmap();
+    }
+
+    /* ===== AP Table Filters ===== */
+    function filterTable(filter, btn) {
+      document.querySelectorAll('#apTable').forEach(t => {
+        t.closest('.card').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      });
+      btn.classList.add('active');
+      const rows = document.querySelectorAll('#apTable tbody tr');
+      rows.forEach(row => {
+        const type = row.getAttribute('data-type');
+        const band = row.getAttribute('data-band');
+        if (filter === 'all') { row.style.display = ''; }
+        else if (filter === 'target' && type === 'target') { row.style.display = ''; }
+        else if (filter === 'staff' && type === 'staff') { row.style.display = ''; }
+        else if (filter === '2.4' && band === '2.4') { row.style.display = ''; }
+        else if (filter === '5' && band === '5') { row.style.display = ''; }
+        else { row.style.display = 'none'; }
+      });
+    }
+
+    function searchTable() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      document.querySelectorAll('#apTable tbody tr').forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(query) ? '' : 'none';
+      });
+    }
+
+    /* ===== CSV Export ===== */
+    function downloadCSV() {
+      const rows = [['SSID','BSSID','Vendor','Band / Channel','Peak RSSI (dBm)','Classification']];
+      document.querySelectorAll('#apTable tbody tr').forEach(tr => {
+        const cells = tr.querySelectorAll('td');
+        const row = Array.from(cells).map(td => {
+          let t = td.textContent.trim().replace(/\s+/g, ' ');
+          return '"' + t.replace(/"/g, '""') + '"';
+        });
+        rows.push(row);
+      });
+
+      // Also add heatmap coordinate data
+      const hm_rows = [[''],['--- Heatmap Grid Data ---'],['X (m)','Y (m)','Best RSSI (dBm)','Best SSID','Coverage Zone']];
+      HEATMAP_DATA.measurement_points.forEach(p => {
+        hm_rows.push([p.x_m, p.y_m, p.best_rssi_dbm, '"'+p.best_ssid+'"', p.zone]);
+      });
+
+      const csvContent = rows.map(r => r.join(',')).join('\n') + '\n' + hm_rows.map(r => r.join(',')).join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'nodeconnect_survey_report.csv';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
+    /* ===== Heatmap Data (embedded) ===== */
+    const HEATMAP_DATA = {
+  "floor_width_m": 150,
+  "floor_height_m": 35,
+  "total_points": 210,
+  "ap_positions": [
+    {
+      "x": 15.0,
+      "y": 17.5,
+      "ssid": "Jain_Student",
+      "power": -25
+    },
+    {
+      "x": 35.0,
+      "y": 17.5,
+      "ssid": "Jain_Student",
+      "power": -25
+    },
+    {
+      "x": 55.0,
+      "y": 17.5,
+      "ssid": "Jain_Employee",
+      "power": -25
+    },
+    {
+      "x": 75.0,
+      "y": 17.5,
+      "ssid": "Jain_Student",
+      "power": -39
+    },
+    {
+      "x": 95.0,
+      "y": 17.5,
+      "ssid": "Jain_Employee",
+      "power": -38
+    },
+    {
+      "x": 115.0,
+      "y": 17.5,
+      "ssid": "Jain_Student",
+      "power": -48
+    },
+    {
+      "x": 122.9,
+      "y": 26.6,
+      "ssid": "Airtel_rake_0524",
+      "power": -46
+    },
+    {
+      "x": 135.0,
+      "y": 17.5,
+      "ssid": "Jain_Guest",
+      "power": -59
+    }
+  ],
+  "measurement_points": [
+    {
+      "x_m": 0.4,
+      "y_m": 0,
+      "best_rssi_dbm": -36,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 0,
+      "y_m": 5.0,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 0.9,
+      "y_m": 10.6,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 0.9,
+      "y_m": 15.7,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 0.6,
+      "y_m": 18.6,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 0,
+      "y_m": 24.1,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 1.5,
+      "y_m": 30.4,
+      "best_rssi_dbm": -36,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 4.1,
+      "y_m": 1.3,
+      "best_rssi_dbm": -39,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 5.2,
+      "y_m": 4.3,
+      "best_rssi_dbm": -35,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 3.8,
+      "y_m": 10.4,
+      "best_rssi_dbm": -35,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 3.5,
+      "y_m": 15.7,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 6.1,
+      "y_m": 19.3,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 5.8,
+      "y_m": 25.1,
+      "best_rssi_dbm": -34,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 4.4,
+      "y_m": 28.7,
+      "best_rssi_dbm": -36,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 9.9,
+      "y_m": 0.1,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 11.5,
+      "y_m": 5.4,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 8.7,
+      "y_m": 10.4,
+      "best_rssi_dbm": -28,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 11.3,
+      "y_m": 15.2,
+      "best_rssi_dbm": -27,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 10.7,
+      "y_m": 20.5,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 9.8,
+      "y_m": 24.3,
+      "best_rssi_dbm": -28,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 11.4,
+      "y_m": 31.3,
+      "best_rssi_dbm": -36,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 14.3,
+      "y_m": 0.9,
+      "best_rssi_dbm": -34,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 16.4,
+      "y_m": 5.2,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 13.7,
+      "y_m": 9.1,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 14.8,
+      "y_m": 15.3,
+      "best_rssi_dbm": -26,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 14.4,
+      "y_m": 20.8,
+      "best_rssi_dbm": -25,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 16.1,
+      "y_m": 26.1,
+      "best_rssi_dbm": -29,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 16.0,
+      "y_m": 29.4,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 20.7,
+      "y_m": 0,
+      "best_rssi_dbm": -36,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 18.5,
+      "y_m": 5.8,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 21.2,
+      "y_m": 10.1,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 21.2,
+      "y_m": 14.1,
+      "best_rssi_dbm": -27,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 21.1,
+      "y_m": 21.4,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 20.9,
+      "y_m": 24.3,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 20.9,
+      "y_m": 29.2,
+      "best_rssi_dbm": -28,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 26.4,
+      "y_m": 0.1,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 25.7,
+      "y_m": 4.4,
+      "best_rssi_dbm": -34,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 25.1,
+      "y_m": 10.7,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 25.7,
+      "y_m": 14.4,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 26.2,
+      "y_m": 20.3,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 24.8,
+      "y_m": 24.1,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 26.0,
+      "y_m": 30.8,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 29.7,
+      "y_m": 0.4,
+      "best_rssi_dbm": -35,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 28.8,
+      "y_m": 4.8,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 30.5,
+      "y_m": 11.5,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 31.2,
+      "y_m": 15.7,
+      "best_rssi_dbm": -25,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 28.7,
+      "y_m": 19.4,
+      "best_rssi_dbm": -27,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 29.7,
+      "y_m": 25.1,
+      "best_rssi_dbm": -28,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 29.6,
+      "y_m": 28.5,
+      "best_rssi_dbm": -34,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 34.2,
+      "y_m": 0,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 35.4,
+      "y_m": 3.6,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 34.1,
+      "y_m": 9.5,
+      "best_rssi_dbm": -28,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 36.5,
+      "y_m": 14.5,
+      "best_rssi_dbm": -29,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 33.9,
+      "y_m": 20.5,
+      "best_rssi_dbm": -25,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 36.0,
+      "y_m": 26.4,
+      "best_rssi_dbm": -26,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 35.6,
+      "y_m": 30.4,
+      "best_rssi_dbm": -34,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 39.8,
+      "y_m": 0,
+      "best_rssi_dbm": -34,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 40.6,
+      "y_m": 4.8,
+      "best_rssi_dbm": -34,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 39.3,
+      "y_m": 11.1,
+      "best_rssi_dbm": -26,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 41.1,
+      "y_m": 14.0,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 38.8,
+      "y_m": 20.7,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 40.6,
+      "y_m": 24.4,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 39.3,
+      "y_m": 28.9,
+      "best_rssi_dbm": -29,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 46.4,
+      "y_m": 0.1,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 46.4,
+      "y_m": 5.2,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 44.1,
+      "y_m": 8.7,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 45.2,
+      "y_m": 14.4,
+      "best_rssi_dbm": -28,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 44.8,
+      "y_m": 21.1,
+      "best_rssi_dbm": -29,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 45.5,
+      "y_m": 24.0,
+      "best_rssi_dbm": -27,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 45.6,
+      "y_m": 29.9,
+      "best_rssi_dbm": -36,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 50.4,
+      "y_m": 1.2,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 50.6,
+      "y_m": 5.6,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 48.8,
+      "y_m": 11.4,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 49.9,
+      "y_m": 15.5,
+      "best_rssi_dbm": -29,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 50.5,
+      "y_m": 21.1,
+      "best_rssi_dbm": -26,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 49.5,
+      "y_m": 26.4,
+      "best_rssi_dbm": -34,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 50.8,
+      "y_m": 30.4,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 55.3,
+      "y_m": 0,
+      "best_rssi_dbm": -35,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 56.0,
+      "y_m": 5.0,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 56.3,
+      "y_m": 10.0,
+      "best_rssi_dbm": -27,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 54.3,
+      "y_m": 14.4,
+      "best_rssi_dbm": -27,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 54.9,
+      "y_m": 19.5,
+      "best_rssi_dbm": -27,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 55.9,
+      "y_m": 24.7,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 56.1,
+      "y_m": 29.8,
+      "best_rssi_dbm": -34,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 59.5,
+      "y_m": 0.6,
+      "best_rssi_dbm": -37,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 61.1,
+      "y_m": 3.6,
+      "best_rssi_dbm": -37,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 61.1,
+      "y_m": 9.8,
+      "best_rssi_dbm": -27,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 60.2,
+      "y_m": 15.9,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 59.3,
+      "y_m": 19.3,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 60.4,
+      "y_m": 24.8,
+      "best_rssi_dbm": -28,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 61.5,
+      "y_m": 29.4,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 65.0,
+      "y_m": 1.2,
+      "best_rssi_dbm": -36,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 65.5,
+      "y_m": 6.0,
+      "best_rssi_dbm": -35,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 64.4,
+      "y_m": 10.7,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 66.0,
+      "y_m": 14.9,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 65.7,
+      "y_m": 21.4,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 65.5,
+      "y_m": 25.3,
+      "best_rssi_dbm": -29,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 64.2,
+      "y_m": 28.7,
+      "best_rssi_dbm": -31,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 68.8,
+      "y_m": 1.2,
+      "best_rssi_dbm": -38,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 69.7,
+      "y_m": 3.8,
+      "best_rssi_dbm": -40,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 68.8,
+      "y_m": 10.6,
+      "best_rssi_dbm": -32,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 70.5,
+      "y_m": 15.4,
+      "best_rssi_dbm": -36,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 69.1,
+      "y_m": 19.1,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 69.3,
+      "y_m": 24.0,
+      "best_rssi_dbm": -30,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 70.7,
+      "y_m": 30.1,
+      "best_rssi_dbm": -38,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 75.8,
+      "y_m": 1.1,
+      "best_rssi_dbm": -43,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 76.2,
+      "y_m": 3.7,
+      "best_rssi_dbm": -35,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 75.1,
+      "y_m": 9.9,
+      "best_rssi_dbm": -38,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 74.9,
+      "y_m": 14.2,
+      "best_rssi_dbm": -35,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 76.3,
+      "y_m": 18.7,
+      "best_rssi_dbm": -33,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 74.5,
+      "y_m": 23.9,
+      "best_rssi_dbm": -38,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 75.2,
+      "y_m": 29.1,
+      "best_rssi_dbm": -35,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 81.0,
+      "y_m": 1.4,
+      "best_rssi_dbm": -43,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 80.6,
+      "y_m": 4.4,
+      "best_rssi_dbm": -44,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 80.7,
+      "y_m": 9.1,
+      "best_rssi_dbm": -39,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 79.0,
+      "y_m": 15.4,
+      "best_rssi_dbm": -40,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 79.8,
+      "y_m": 19.3,
+      "best_rssi_dbm": -39,
+      "best_ssid": "Jain_Student",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 79.1,
+      "y_m": 23.9,
+      "best_rssi_dbm": -35,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 81.0,
+      "y_m": 30.9,
+      "best_rssi_dbm": -37,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 85.6,
+      "y_m": 0,
+      "best_rssi_dbm": -43,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 86.0,
+      "y_m": 4.2,
+      "best_rssi_dbm": -43,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 83.8,
+      "y_m": 10.0,
+      "best_rssi_dbm": -43,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 85.3,
+      "y_m": 15.8,
+      "best_rssi_dbm": -44,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 85.2,
+      "y_m": 20.4,
+      "best_rssi_dbm": -40,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 83.7,
+      "y_m": 25.0,
+      "best_rssi_dbm": -38,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 85.0,
+      "y_m": 29.9,
+      "best_rssi_dbm": -46,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 89.0,
+      "y_m": 0,
+      "best_rssi_dbm": -45,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 89.8,
+      "y_m": 5.1,
+      "best_rssi_dbm": -44,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 88.7,
+      "y_m": 8.8,
+      "best_rssi_dbm": -46,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 88.9,
+      "y_m": 14.5,
+      "best_rssi_dbm": -43,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 90.9,
+      "y_m": 20.5,
+      "best_rssi_dbm": -42,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 89.0,
+      "y_m": 24.1,
+      "best_rssi_dbm": -40,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 91.0,
+      "y_m": 31.2,
+      "best_rssi_dbm": -45,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 95.9,
+      "y_m": 0,
+      "best_rssi_dbm": -47,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 95.1,
+      "y_m": 4.4,
+      "best_rssi_dbm": -49,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 94.6,
+      "y_m": 10.1,
+      "best_rssi_dbm": -40,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 93.8,
+      "y_m": 16.0,
+      "best_rssi_dbm": -42,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 94.2,
+      "y_m": 19.9,
+      "best_rssi_dbm": -38,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 96.3,
+      "y_m": 26.0,
+      "best_rssi_dbm": -45,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 94.8,
+      "y_m": 28.5,
+      "best_rssi_dbm": -46,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 99.4,
+      "y_m": 0,
+      "best_rssi_dbm": -51,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 99.2,
+      "y_m": 3.9,
+      "best_rssi_dbm": -47,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 100.1,
+      "y_m": 10.0,
+      "best_rssi_dbm": -44,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 100.9,
+      "y_m": 14.5,
+      "best_rssi_dbm": -40,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 99.0,
+      "y_m": 20.8,
+      "best_rssi_dbm": -38,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 98.6,
+      "y_m": 24.1,
+      "best_rssi_dbm": -42,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 99.6,
+      "y_m": 30.8,
+      "best_rssi_dbm": -48,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 106.4,
+      "y_m": 0,
+      "best_rssi_dbm": -51,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 105.1,
+      "y_m": 4.5,
+      "best_rssi_dbm": -46,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 106.1,
+      "y_m": 9.6,
+      "best_rssi_dbm": -42,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 105.5,
+      "y_m": 16.4,
+      "best_rssi_dbm": -40,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 105.2,
+      "y_m": 20.3,
+      "best_rssi_dbm": -44,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 104.2,
+      "y_m": 23.8,
+      "best_rssi_dbm": -42,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 104.4,
+      "y_m": 31.2,
+      "best_rssi_dbm": -50,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 111.0,
+      "y_m": 0,
+      "best_rssi_dbm": -54,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 110.9,
+      "y_m": 5.0,
+      "best_rssi_dbm": -45,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 110.2,
+      "y_m": 10.3,
+      "best_rssi_dbm": -47,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 111.4,
+      "y_m": 15.4,
+      "best_rssi_dbm": -49,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 109.8,
+      "y_m": 21.2,
+      "best_rssi_dbm": -45,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 111.2,
+      "y_m": 26.0,
+      "best_rssi_dbm": -46,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 111.3,
+      "y_m": 29.0,
+      "best_rssi_dbm": -49,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 115.4,
+      "y_m": 0.2,
+      "best_rssi_dbm": -53,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 114.9,
+      "y_m": 5.9,
+      "best_rssi_dbm": -50,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 114.4,
+      "y_m": 10.7,
+      "best_rssi_dbm": -48,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 114.3,
+      "y_m": 14.2,
+      "best_rssi_dbm": -47,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 115.2,
+      "y_m": 19.4,
+      "best_rssi_dbm": -48,
+      "best_ssid": "Jain_Employee",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 116.4,
+      "y_m": 24.1,
+      "best_rssi_dbm": -50,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 114.8,
+      "y_m": 31.1,
+      "best_rssi_dbm": -52,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 120.0,
+      "y_m": 0.8,
+      "best_rssi_dbm": -57,
+      "best_ssid": "Jain_Student",
+      "zone": "good"
+    },
+    {
+      "x_m": 121.3,
+      "y_m": 5.8,
+      "best_rssi_dbm": -51,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 120.3,
+      "y_m": 10.0,
+      "best_rssi_dbm": -51,
+      "best_ssid": "Jain_Student",
+      "zone": "good"
+    },
+    {
+      "x_m": 120.1,
+      "y_m": 15.6,
+      "best_rssi_dbm": -52,
+      "best_ssid": "Jain_Student",
+      "zone": "good"
+    },
+    {
+      "x_m": 120.6,
+      "y_m": 18.6,
+      "best_rssi_dbm": -51,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 120.4,
+      "y_m": 25.4,
+      "best_rssi_dbm": -46,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 119.0,
+      "y_m": 30.6,
+      "best_rssi_dbm": -46,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 124.5,
+      "y_m": 0.5,
+      "best_rssi_dbm": -55,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 125.4,
+      "y_m": 5.6,
+      "best_rssi_dbm": -54,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 124.1,
+      "y_m": 10.6,
+      "best_rssi_dbm": -51,
+      "best_ssid": "Jain_Student",
+      "zone": "good"
+    },
+    {
+      "x_m": 126.4,
+      "y_m": 16.0,
+      "best_rssi_dbm": -52,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 124.9,
+      "y_m": 19.1,
+      "best_rssi_dbm": -48,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 125.1,
+      "y_m": 25.4,
+      "best_rssi_dbm": -48,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 124.7,
+      "y_m": 31.3,
+      "best_rssi_dbm": -52,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 130.2,
+      "y_m": 0.1,
+      "best_rssi_dbm": -58,
+      "best_ssid": "Jain_Student",
+      "zone": "good"
+    },
+    {
+      "x_m": 129.7,
+      "y_m": 5.0,
+      "best_rssi_dbm": -54,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 129.4,
+      "y_m": 11.5,
+      "best_rssi_dbm": -52,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 129.9,
+      "y_m": 14.3,
+      "best_rssi_dbm": -54,
+      "best_ssid": "Jain_Student",
+      "zone": "good"
+    },
+    {
+      "x_m": 131.0,
+      "y_m": 20.0,
+      "best_rssi_dbm": -50,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 130.8,
+      "y_m": 26.4,
+      "best_rssi_dbm": -47,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "excellent"
+    },
+    {
+      "x_m": 129.7,
+      "y_m": 30.0,
+      "best_rssi_dbm": -51,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 133.9,
+      "y_m": 0,
+      "best_rssi_dbm": -61,
+      "best_ssid": "Jain_Employee",
+      "zone": "good"
+    },
+    {
+      "x_m": 134.2,
+      "y_m": 5.8,
+      "best_rssi_dbm": -56,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 135.0,
+      "y_m": 10.2,
+      "best_rssi_dbm": -54,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 135.9,
+      "y_m": 14.9,
+      "best_rssi_dbm": -55,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 135.7,
+      "y_m": 20.2,
+      "best_rssi_dbm": -56,
+      "best_ssid": "Jain_Student",
+      "zone": "good"
+    },
+    {
+      "x_m": 134.7,
+      "y_m": 25.8,
+      "best_rssi_dbm": -55,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 134.6,
+      "y_m": 30.5,
+      "best_rssi_dbm": -53,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 139.2,
+      "y_m": 0,
+      "best_rssi_dbm": -61,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 139.3,
+      "y_m": 6.3,
+      "best_rssi_dbm": -56,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 138.8,
+      "y_m": 8.6,
+      "best_rssi_dbm": -57,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 138.7,
+      "y_m": 15.0,
+      "best_rssi_dbm": -55,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 138.9,
+      "y_m": 20.5,
+      "best_rssi_dbm": -56,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 140.0,
+      "y_m": 26.4,
+      "best_rssi_dbm": -54,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 139.9,
+      "y_m": 31.0,
+      "best_rssi_dbm": -56,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 144.2,
+      "y_m": 0,
+      "best_rssi_dbm": -63,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 145.3,
+      "y_m": 6.1,
+      "best_rssi_dbm": -61,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 143.5,
+      "y_m": 11.3,
+      "best_rssi_dbm": -58,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 145.2,
+      "y_m": 15.8,
+      "best_rssi_dbm": -56,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 144.9,
+      "y_m": 21.0,
+      "best_rssi_dbm": -57,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 145.2,
+      "y_m": 24.8,
+      "best_rssi_dbm": -60,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    },
+    {
+      "x_m": 146.0,
+      "y_m": 31.4,
+      "best_rssi_dbm": -59,
+      "best_ssid": "Airtel_rake_0524",
+      "zone": "good"
+    }
+  ]
+};
+
+    /* ===== Heatmap Rendering Engine ===== */
+    let currentHeatmapFilter = 'all';
+    const canvas = document.getElementById('heatmapCanvas');
+    const ctx = canvas.getContext('2d');
+    const tooltip = document.getElementById('heatmapTooltip');
+    const coordDisplay = document.getElementById('coordDisplay');
+
+    const ZONE_COLORS = {
+      excellent: '#10b981',
+      good:      '#3b82f6',
+      fair:      '#f59e0b',
+      poor:      '#f97316',
+      dead:      '#ef4444'
+    };
+
+    function resizeCanvas() {
+      const container = document.getElementById('heatmapContainer');
+      canvas.width = container.clientWidth;
+      canvas.height = Math.max(280, Math.round(container.clientWidth * 35 / 150));
+      drawHeatmap();
+    }
+
+    function drawHeatmap() {
+      const W = canvas.width;
+      const H = canvas.height;
+      const FW = HEATMAP_DATA.floor_width_m;
+      const FH = HEATMAP_DATA.floor_height_m;
+      const scaleX = W / FW;
+      const scaleY = H / FH;
+
+      // Background
+      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+      ctx.fillStyle = isDark ? '#1a1f2e' : '#f0f2f5';
+      ctx.fillRect(0, 0, W, H);
+
+      // Grid lines
+      ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x <= FW; x += 10) {
+        ctx.beginPath();
+        ctx.moveTo(x * scaleX, 0);
+        ctx.lineTo(x * scaleX, H);
+        ctx.stroke();
+      }
+      for (let y = 0; y <= FH; y += 5) {
+        ctx.beginPath();
+        ctx.moveTo(0, y * scaleY);
+        ctx.lineTo(W, y * scaleY);
+        ctx.stroke();
+      }
+
+      // Axis labels
+      ctx.fillStyle = isDark ? '#64748b' : '#94a3b8';
+      ctx.font = '10px JetBrains Mono, monospace';
+      ctx.textAlign = 'center';
+      for (let x = 0; x <= FW; x += 20) {
+        ctx.fillText(x + 'm', x * scaleX, H - 4);
+      }
+      ctx.textAlign = 'left';
+      for (let y = 0; y <= FH; y += 10) {
+        ctx.fillText(y + 'm', 4, H - y * scaleY - 4);
+      }
+
+      // Draw measurement points as colored circles with glow
+      const points = HEATMAP_DATA.measurement_points;
+      const radius = Math.max(8, Math.min(18, W / 50));
+
+      points.forEach(p => {
+        if (currentHeatmapFilter !== 'all' && p.best_ssid !== currentHeatmapFilter) return;
+
+        const px = p.x_m * scaleX;
+        const py = H - p.y_m * scaleY;
+        const color = ZONE_COLORS[p.zone] || '#64748b';
+
+        // Glow effect
+        const gradient = ctx.createRadialGradient(px, py, 0, px, py, radius * 2.2);
+        gradient.addColorStop(0, color + 'AA');
+        gradient.addColorStop(0.5, color + '44');
+        gradient.addColorStop(1, color + '00');
+        ctx.beginPath();
+        ctx.arc(px, py, radius * 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Core dot
+        ctx.beginPath();
+        ctx.arc(px, py, radius * 0.45, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.15)';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      });
+
+      // Draw AP markers
+      HEATMAP_DATA.ap_positions.forEach(ap => {
+        if (currentHeatmapFilter !== 'all' && ap.ssid !== currentHeatmapFilter) return;
+
+        const ax = ap.x * scaleX;
+        const ay = H - ap.y * scaleY;
+
+        // AP marker: white diamond with purple border
+        ctx.save();
+        ctx.translate(ax, ay);
+        ctx.rotate(Math.PI / 4);
+        ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
+        ctx.strokeStyle = '#818cf8';
+        ctx.lineWidth = 2.5;
+        ctx.fillRect(-6, -6, 12, 12);
+        ctx.strokeRect(-6, -6, 12, 12);
+        ctx.restore();
+
+        // Label
+        ctx.fillStyle = isDark ? '#c7d2fe' : '#4338ca';
+        ctx.font = 'bold 9px Plus Jakarta Sans, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(ap.ssid.replace('Jain_','').substring(0,8), ax, ay - 12);
+        ctx.fillText(ap.power + ' dBm', ax, ay + 18);
+      });
+
+      // Scale bar
+      const barLen = 10 * scaleX;
+      ctx.strokeStyle = isDark ? '#94a3b8' : '#475569';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(W - barLen - 16, 20);
+      ctx.lineTo(W - 16, 20);
+      ctx.stroke();
+      ctx.fillStyle = isDark ? '#94a3b8' : '#475569';
+      ctx.font = '10px JetBrains Mono, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('10m', W - barLen/2 - 16, 14);
+
+      // Title watermark
+      ctx.fillStyle = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.03)';
+      ctx.font = 'bold 28px Plus Jakarta Sans, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('DMGT EL Campus — RF Coverage', W/2, H/2);
+    }
+
+    function setHeatmapFilter(filter, btn) {
+      document.querySelectorAll('.heatmap-toolbar .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentHeatmapFilter = filter;
+      drawHeatmap();
+    }
+
+    /* ===== Heatmap Tooltip on Hover ===== */
+    canvas.addEventListener('mousemove', function(e) {
+      const rect = canvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const FW = HEATMAP_DATA.floor_width_m;
+      const FH = HEATMAP_DATA.floor_height_m;
+      const coordX = (mx / canvas.width * FW).toFixed(1);
+      const coordY = ((canvas.height - my) / canvas.height * FH).toFixed(1);
+
+      coordDisplay.textContent = '📍 X: ' + coordX + 'm  Y: ' + coordY + 'm';
+
+      // Find nearest measurement point
+      let nearest = null;
+      let nearestDist = Infinity;
+      HEATMAP_DATA.measurement_points.forEach(p => {
+        if (currentHeatmapFilter !== 'all' && p.best_ssid !== currentHeatmapFilter) return;
+        const px = p.x_m / FW * canvas.width;
+        const py = canvas.height - p.y_m / FH * canvas.height;
+        const d = Math.sqrt((mx-px)**2 + (my-py)**2);
+        if (d < nearestDist) { nearestDist = d; nearest = p; }
+      });
+
+      if (nearest && nearestDist < 30) {
+        document.getElementById('ttSsid').textContent = '📡 ' + nearest.best_ssid;
+        document.getElementById('ttCoord').textContent = nearest.x_m + 'm, ' + nearest.y_m + 'm';
+        document.getElementById('ttRssi').textContent = nearest.best_rssi_dbm + ' dBm';
+        document.getElementById('ttZone').textContent = nearest.zone.charAt(0).toUpperCase() + nearest.zone.slice(1);
+        document.getElementById('ttRssi').style.color = ZONE_COLORS[nearest.zone];
+
+        const ttEl = tooltip;
+        let left = e.clientX - rect.left + 16;
+        let top = e.clientY - rect.top - 40;
+        if (left + 200 > rect.width) left = e.clientX - rect.left - 200;
+        if (top < 0) top = e.clientY - rect.top + 16;
+        ttEl.style.left = left + 'px';
+        ttEl.style.top = top + 'px';
+        ttEl.classList.add('visible');
+      } else {
+        tooltip.classList.remove('visible');
+      }
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('visible');
+      coordDisplay.textContent = 'Hover over heatmap for coordinates';
+    });
+
+    /* ===== Init ===== */
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('DOMContentLoaded', resizeCanvas);
+    resizeCanvas();
+  </script>
+</body>
+</html>
